@@ -3,7 +3,7 @@ let users = {
     id: 'sarahedo',
     password:'password123',
     name: 'Sarah Edo',
-    avatarURL: null,
+    avatarURL: "https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_640.jpg",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -16,7 +16,7 @@ let users = {
     id: 'tylermcginnis',
     password:'abc321',
     name: 'Tyler McGinnis',
-    avatarURL: null,
+    avatarURL: "https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_640.jpg",
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -27,7 +27,7 @@ let users = {
     id: 'mtsamis',
     password:'xyz123',
     name: 'Mike Tsamis',
-    avatarURL: null,
+    avatarURL: "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_640.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -39,7 +39,7 @@ let users = {
     id: 'zoshikanlu',
     password:'pass246',
     name: 'Zenobia Oshikanlu',
-    avatarURL: null,
+    avatarURL: "https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_640.jpg",
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
     },
