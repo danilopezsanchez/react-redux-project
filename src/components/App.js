@@ -1,9 +1,9 @@
 import Login from "./Login";
-import Leaderboard from "./Leaderboard";
+import Dashboard from "./Dashboard";
 
 function App() {
   return (
-    <Leaderboard />
+    <Dashboard />
   );
 }
 

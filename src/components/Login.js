@@ -12,7 +12,7 @@ const Login = () => {
 		_getUsers().then((users)=>{
 			dispatch(receiveUsers(users));
 		})
-	},[])
+	},[]);
 
 
 	useEffect(() => {

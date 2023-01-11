@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { receiveQuestions } from "../actions/questionAction";
+import { _getQuestions } from "../utils/_DATA";
+
 const Dashboard = () => {
+	const dispatch = useDispatch();
+	const questionsState = useSelector(state => state.questions);
+	console.log(questionsState);
+	useEffect(() => {
+		_getQuestions().then((questions)=>{
+			dispatch(receiveQuestions(questions));
+		})
+	},[dispatch]);
 
 	return(
 		<div>
@@ -15,6 +28,14 @@ const Dashboard = () => {
 			</nav>
 			<section className="pollSectionContainer">
 				<h1>New questions</h1>
+				{
+					console.log("cons:", Object.values(questionsState))
+					/*questionsState && Object.values(questionsState).map((question) => {
+						console.log("hiii:", question)
+						return <div>jijiji</div>;
+					})*/
+				}
+
 				<div className="pollListContainer">
 					<div className="pollContainerDetail">
 						<div>Person</div>
