@@ -3,7 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Leaderboard = () => {
 	const authedUser = useSelector(state => state.authedUser);
-	console.log(authedUser)
+	const usersState = useSelector(state => state.users);
+
+	let usersOrdered = Object.values(usersState).map((user)=>{
+		const counter = parseInt(user.questions.length) + parseInt(Object.values(user.answers).length)
+		return {
+			...user,
+			count: counter
+		}
+	})
+
+	function compare ( a, b ){
+		return b.count - a.count;
+	}
+	usersOrdered.sort( compare );
+
 	return(
 		<div>
 			<NavigationBar />
@@ -13,16 +27,20 @@ const Leaderboard = () => {
 					<div class="col">Answered</div>
 					<div class="col">Created</div>
 				</header>
-				<div class="row">
-					<div class="col">Jhon</div>
-					<div class="col">2</div>
-					<div class="col">3</div>
-				</div>
-				<div class="row">
-					<div class="col">Marie</div>
-					<div class="col">1</div>
-					<div class="col">1</div>
-				</div>
+				{
+					usersOrdered.map((item) => {
+						return (
+							<div class="row">
+								<div class="col">
+									<img src={item.avatarURL} width="50px"/>
+									{item.name}
+								</div>
+								<div class="col">{Object.values(item.answers).length}</div>
+								<div class="col">{item.questions.length}</div>
+							</div>
+						);
+					})
+				}
 			</div>
 		</div>
 	)
