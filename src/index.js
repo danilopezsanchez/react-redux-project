@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import usersReducer from "./reducers/usersReducer";
 import dashboardReducer from './reducers/dashboardReducer';
 import authReducer from './reducers/authUser';
+import { BrowserRouter as Router} from "react-router-dom"
 
 const rootReducer = combineReducers({
   users: usersReducer,
@@ -20,6 +21,8 @@ const store = createStore(rootReducer);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+	<Router>
+    	<App />
+	</Router>
   </Provider>
 );

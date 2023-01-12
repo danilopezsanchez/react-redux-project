@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveQuestions } from "../actions/questionAction";
 import { _getQuestions } from "../utils/_DATA";
+import Login from "./Login";
+import NavigationBar from "./NavigationBar";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
+	const authedUser = useSelector(state => state.authedUser);
 	const questionsState = useSelector(state => state.questions);
-	console.log(questionsState);
+	
 	useEffect(() => {
 		_getQuestions().then((questions)=>{
 			dispatch(receiveQuestions(questions));
@@ -24,24 +27,13 @@ const Dashboard = () => {
 	}
 
 	return(
-		<div>
-			<nav className="navigationBar">
-				<div className="linkNavegation">
-					<a>Home</a>
-					<a>Leaderboard</a>
-					<a>New</a>
-				</div>
-				<div className="loginNavegation">
-					<div>Name</div>
-					<a>Logout</a>
-				</div>
-			</nav>
+		authedUser != null ? (<div>
+			<NavigationBar/>
 			<section className="pollSectionContainer">
 				<h1>New questions</h1>
 				<div className="pollListContainer">
 				{
 					questionsState && Object.values(questionsState).map((question) => {
-						console.log("hiii:", question)
 						return (
 							<div className="pollContainerDetail">
 							<div>{question.author}</div>
@@ -73,7 +65,7 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</section>
-		</div>
+		</div>) : <Login />
 	)
 }
 

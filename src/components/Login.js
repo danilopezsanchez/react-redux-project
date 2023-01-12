@@ -8,19 +8,13 @@ import {useDispatch, useSelector} from "react-redux";
 
 const Login = () => {
 	const dispatch = useDispatch();
-	const usersState = useSelector(state => state.users);
-	const allState = useSelector(state => state);
+	const usersState = useSelector(state => state.users);	
 
 	useEffect(() => {
 		_getUsers().then((users)=>{
 			dispatch(receiveUsers(users));
 		})
 	},[]);
-
-
-	useEffect(() => {
-		console.log("Cambioooo:", allState);
-	},[allState])
 
 	function handleLogin(event){
 		console.log(document.getElementById("loginBox").value);

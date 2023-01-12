@@ -1,5 +1,12 @@
+import NavigationBar from "./NavigationBar";
+import { useDispatch, useSelector } from "react-redux";
+
 const NewPoll = () => {
+	const authedUser = useSelector(state => state.authedUser);
+	console.log(authedUser)
 	return(
+		<div>
+			<NavigationBar />
 		<div className="newPollContainer">
 			<h1>Would you rather?</h1>
 			<h2>Create your own poll</h2>
@@ -8,6 +15,7 @@ const NewPoll = () => {
 				<input type="text" placeholder="Option 2" required />
 				<button>Submit</button>
 			</form>
+		</div>
 		</div>
 	)
 }

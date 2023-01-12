@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, LOGIN_USER } from "../actions/usersAction";
+import { RECEIVE_USERS } from "../actions/usersAction";
 
 const usersReducer = (state={}, action) => {
 	switch(action.type){
