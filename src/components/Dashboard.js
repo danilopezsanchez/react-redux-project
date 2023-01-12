@@ -13,6 +13,16 @@ const Dashboard = () => {
 		})
 	},[dispatch]);
 
+	function formatDate(time){
+		const dateFormat= new Date(time);
+		const dateFormated = dateFormat.getDate()+
+		"/"+(dateFormat.getMonth()+1)+
+		"/"+dateFormat.getFullYear()+
+		" "+dateFormat.getHours()+
+		":"+dateFormat.getMinutes()
+		return dateFormated;
+	}
+
 	return(
 		<div>
 			<nav className="navigationBar">
@@ -28,30 +38,19 @@ const Dashboard = () => {
 			</nav>
 			<section className="pollSectionContainer">
 				<h1>New questions</h1>
-				{
-					console.log("cons:", Object.values(questionsState))
-					/*questionsState && Object.values(questionsState).map((question) => {
-						console.log("hiii:", question)
-						return <div>jijiji</div>;
-					})*/
-				}
-
 				<div className="pollListContainer">
-					<div className="pollContainerDetail">
-						<div>Person</div>
-						<div>Date</div>
-						<button>View</button>
+				{
+					questionsState && Object.values(questionsState).map((question) => {
+						console.log("hiii:", question)
+						return (
+							<div className="pollContainerDetail">
+							<div>{question.author}</div>
+							<div>{formatDate(question.timestamp)}</div>
+							<button>View</button>
 					</div>
-					<div className="pollContainerDetail">
-						<div>Person</div>
-						<div>Date</div>
-						<button>View</button>
-					</div>
-					<div className="pollContainerDetail">
-						<div>Person</div>
-						<div>Date</div>
-						<button>View</button>
-					</div>
+						)
+					})
+				}
 				</div>
 			</section>
 			<section className="pollSectionContainer">

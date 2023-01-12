@@ -6,10 +6,12 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import usersReducer from "./reducers/usersReducer";
 import dashboardReducer from './reducers/dashboardReducer';
+import authReducer from './reducers/authUser';
 
 const rootReducer = combineReducers({
   users: usersReducer,
-  questions: dashboardReducer
+  questions: dashboardReducer,
+  authedUser: authReducer,
 });
 
 const store = createStore(rootReducer);
