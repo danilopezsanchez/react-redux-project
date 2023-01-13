@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, UPDATE_ANSWER } from "../actions/usersAction";
+import { RECEIVE_USERS, UPDATE_ANSWER, UPDATE_QUESTION } from "../actions/usersAction";
 
 
 const usersReducer = (state={}, action) => {
@@ -9,6 +9,11 @@ const usersReducer = (state={}, action) => {
 				...action.users,
 			};
 		case UPDATE_ANSWER:
+			return{
+				...state,
+				[action.user.id]: action.user,
+			};
+		case UPDATE_QUESTION:
 			return{
 				...state,
 				[action.user.id]: action.user,

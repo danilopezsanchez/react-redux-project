@@ -1,16 +1,35 @@
 import NavigationBar from "./NavigationBar";
 import { useDispatch, useSelector } from "react-redux";
+import { _saveQuestion } from "../utils/_DATA";
+import { addNewQuestion } from "../actions/questionAction";
+import { updateUserQuestion } from "../actions/usersAction";
 
 const NewPoll = () => {
 	const authedUser = useSelector(state => state.authedUser);
 	const questionsState = useSelector(state => state.questions);
 	const usersState = useSelector(state => state.users);
+	const dispatch = useDispatch();
 
 	function handleSubmit(e){
 		e.preventDefault();
 		const option1=document.getElementById("option1").value;
 		const option2=document.getElementById("option2").value;
-		console.log(option1 +" y "+option2);
+		
+		
+		const timestamp = Math.floor(Date.now());
+
+		const questionObj = {
+			author: authedUser,
+			optionOneText: option1, 
+			optionTwoText: option2
+		}
+
+		_saveQuestion(questionObj).then((question)=>{
+			dispatch(addNewQuestion(question));
+			usersState[authedUser].questions.push(question.id);
+			dispatch(updateUserQuestion(usersState[authedUser]));
+		});
+
 	}
 
 	return(

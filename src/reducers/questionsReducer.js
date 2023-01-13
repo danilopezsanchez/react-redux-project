@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION } from "../actions/questionAction";
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_NEW_QUESTION } from "../actions/questionAction";
 
 const dashboardReducer = (state={}, action) => {
 	switch(action.type){
@@ -11,6 +11,11 @@ const dashboardReducer = (state={}, action) => {
 			return{
 				...state,
 				...action.question
+			};
+		case ADD_NEW_QUESTION:
+			return{
+				...state,
+				[action.question.id]: action.question
 			};
 		default:
 			return state;
