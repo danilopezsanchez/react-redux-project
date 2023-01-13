@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import NavigationBar from "./NavigationBar";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { answerQuestion } from "../actions/questionAction"; 
 import { updateUserAnswer } from "../actions/usersAction";
-import { _saveQuestionAnswer } from "../utils/_DATA";
+import { saveAnswerToServer } from "../actions/shared";
 
 const PollDetail = () => {
 	let params = useParams();
@@ -25,12 +25,9 @@ const PollDetail = () => {
 
 		const answer = optionSelected;
 
-		_saveQuestionAnswer({authedUser, qid, answer}).then(()=>{
-			dispatch(answerQuestion(questionDetail));
-			dispatch(updateUserAnswer(userDetail));
-		});
-
-		
+		dispatch(saveAnswerToServer({authedUser, qid, answer}));		
+		dispatch(answerQuestion(questionDetail));
+		dispatch(updateUserAnswer(userDetail));
 	}
 	
 	return(
