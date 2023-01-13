@@ -16,10 +16,10 @@ export function updateUserAnswer(user) {
 	}
 }
 
-export function updateUserQuestion(user) {
+export function updateUserQuestion(question) {
 	return {
 		type: UPDATE_QUESTION,
-		user,
+		question,
 	}
 }
 

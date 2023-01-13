@@ -1,13 +1,9 @@
 import NavigationBar from "./NavigationBar";
 import { useDispatch, useSelector } from "react-redux";
-import { _saveQuestion } from "../utils/_DATA";
-import { addNewQuestion } from "../actions/questionAction";
-import { updateUserQuestion } from "../actions/usersAction";
+import { saveQuestionToServer } from "../actions/shared";
 
 const NewPoll = () => {
 	const authedUser = useSelector(state => state.authedUser);
-	const questionsState = useSelector(state => state.questions);
-	const usersState = useSelector(state => state.users);
 	const dispatch = useDispatch();
 
 	function handleSubmit(e){
@@ -24,12 +20,7 @@ const NewPoll = () => {
 			optionTwoText: option2
 		}
 
-		_saveQuestion(questionObj).then((question)=>{
-			dispatch(addNewQuestion(question));
-			usersState[authedUser].questions.push(question.id);
-			dispatch(updateUserQuestion(usersState[authedUser]));
-		});
-
+		dispatch(saveQuestionToServer(questionObj));
 	}
 
 	return(
