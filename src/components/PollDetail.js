@@ -3,32 +3,34 @@ import NavigationBar from "./NavigationBar";
 import { useParams, useLocation } from "react-router-dom";
 import { answerQuestion } from "../actions/questionAction"; 
 import { updateUserAnswer } from "../actions/usersAction";
+import { _saveQuestionAnswer } from "../utils/_DATA";
 
 const PollDetail = () => {
 	let params = useParams();
-	const question_id = params.question_id;
+	const qid = params.question_id;
 	const questionsState = useSelector(state => state.questions);
 	const authedUser = useSelector(state => state.authedUser);
 	const usersState = useSelector(state => state.users);
 	const dispatch = useDispatch();
 
-	let questionDetail = questionsState[question_id];
+	let questionDetail = questionsState[qid];
 	const avatar = usersState[questionDetail.author].avatarURL;
 	const questionAnswered = questionDetail.optionOne.votes.includes(authedUser) || questionDetail.optionTwo.votes.includes(authedUser);
 
 	let userDetail = usersState[authedUser];
 
 	function handleClickOption(optionSelected){
-		if(optionSelected===1){
-			questionDetail.optionOne.votes.push(authedUser);
-			userDetail.answers[question_id] = "optionOne";
-		}else{
-			questionDetail.optionTwo.votes.push(authedUser);
-			userDetail.answers[question_id] = "optionTwo";
-		}
+		questionDetail[optionSelected].votes.push(authedUser);
+		userDetail.answers[qid] = optionSelected;
 
-		dispatch(answerQuestion(questionDetail));
-		dispatch(updateUserAnswer(userDetail));
+		const answer = optionSelected;
+
+		_saveQuestionAnswer({authedUser, qid, answer}).then(()=>{
+			dispatch(answerQuestion(questionDetail));
+			dispatch(updateUserAnswer(userDetail));
+		});
+
+		
 	}
 	
 	return(
@@ -43,7 +45,7 @@ const PollDetail = () => {
 						<div className="option">
 							<div>{questionDetail.optionOne.text}</div>
 							{
-								!questionAnswered && <button onClick={()=>{handleClickOption(1)}}>Click</button> 
+								!questionAnswered && <button onClick={()=>{handleClickOption("optionOne")}}>Click</button> 
 							}
 							{
 								questionDetail.optionOne.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
@@ -53,7 +55,7 @@ const PollDetail = () => {
 						<div className="option">
 							<div>{questionDetail.optionTwo.text}</div>
 							{
-								!questionAnswered && <button onClick={()=>{handleClickOption(2)}}>Click</button>
+								!questionAnswered && <button onClick={()=>{handleClickOption("optionTwo")}}>Click</button>
 							}
 							{
 								questionDetail.optionTwo.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
