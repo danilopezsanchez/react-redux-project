@@ -32,7 +32,7 @@ const Leaderboard = () => {
 				{
 					usersOrdered.map((item) => {
 						return (
-							<div class="row">
+							<div key={item.id} class="row">
 								<div class="col">
 									<img src={item.avatarURL} width="50px"/>
 									{item.name}

@@ -5,7 +5,7 @@ const NotFound = () => {
 		<div className="notfoundContainer">
 			<h1>The page your are looking for doesn't exist</h1>
 			<h2>Maybe the ghostbusters can help</h2>
-			<img src={ghost} />
+			<img src={ghost} alt="gif page not found"/>
 		</div>
 	)
 }

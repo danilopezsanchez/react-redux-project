@@ -1,20 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import NavigationBar from "./NavigationBar";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { answerQuestion } from "../actions/questionAction"; 
 import { updateUserAnswer } from "../actions/usersAction";
 import { saveAnswerToServer } from "../actions/shared";
 import NotFound from "./NotFound";
 
 const PollDetail = () => {
-	const navigate = useNavigate()
 	let params = useParams();
 	const qid = params.question_id;
 	const questionsState = useSelector(state => state.questions);
 	const authedUser = useSelector(state => state.authedUser);
 	const usersState = useSelector(state => state.users);
 	const dispatch = useDispatch();
-	console.log(questionsState)
 	if(!Object.keys(questionsState).includes(qid)){
 		return <NotFound />
 	}
@@ -51,10 +49,10 @@ const PollDetail = () => {
 								!questionAnswered && <button onClick={()=>{handleClickOption("optionOne")}}>Click</button> 
 							}
 							{
-								questionDetail.optionOne.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
+								questionDetail.optionOne.votes.includes(authedUser) && <div className="optionSelected">Option selected!</div>
 							}
 							{
-								questionAnswered && <div class="optionVotes">Votes: {questionDetail.optionOne.votes.length}</div>
+								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionOne.votes.length}</div>
 							}
 						</div>
 
@@ -64,10 +62,10 @@ const PollDetail = () => {
 								!questionAnswered && <button onClick={()=>{handleClickOption("optionTwo")}}>Click</button>
 							}
 							{
-								questionDetail.optionTwo.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
+								questionDetail.optionTwo.votes.includes(authedUser) && <div className="optionSelected">Option selected!</div>
 							}
 							{
-								questionAnswered && <div class="optionVotes">Votes: {questionDetail.optionTwo.votes.length}</div>
+								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionTwo.votes.length}</div>
 							}
 						</div>
 					</div>

@@ -12,9 +12,6 @@ const NewPoll = () => {
 		e.preventDefault();
 		const option1=document.getElementById("option1").value;
 		const option2=document.getElementById("option2").value;
-		
-		
-		const timestamp = Math.floor(Date.now());
 
 		const questionObj = {
 			author: authedUser,
