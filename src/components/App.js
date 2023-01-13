@@ -20,10 +20,6 @@ function App() {
 		dispatch(getInitialQuestions());
 	},[]);
 
-	const storeApp = useSelector(state => state);
-
-	console.log(storeApp)
-
   return (
 		<div>
 			{

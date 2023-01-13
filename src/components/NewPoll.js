@@ -1,10 +1,12 @@
 import NavigationBar from "./NavigationBar";
 import { useDispatch, useSelector } from "react-redux";
 import { saveQuestionToServer } from "../actions/shared";
+import { useNavigate } from "react-router-dom";
 
 const NewPoll = () => {
 	const authedUser = useSelector(state => state.authedUser);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	function handleSubmit(e){
 		e.preventDefault();
@@ -21,6 +23,7 @@ const NewPoll = () => {
 		}
 
 		dispatch(saveQuestionToServer(questionObj));
+		navigate("/");
 	}
 
 	return(
