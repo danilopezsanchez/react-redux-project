@@ -1,17 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import NavigationBar from "./NavigationBar";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { answerQuestion } from "../actions/questionAction"; 
 import { updateUserAnswer } from "../actions/usersAction";
 import { saveAnswerToServer } from "../actions/shared";
+import NotFound from "./NotFound";
 
 const PollDetail = () => {
+	const navigate = useNavigate()
 	let params = useParams();
 	const qid = params.question_id;
 	const questionsState = useSelector(state => state.questions);
 	const authedUser = useSelector(state => state.authedUser);
 	const usersState = useSelector(state => state.users);
 	const dispatch = useDispatch();
+	console.log(questionsState)
+	if(!Object.keys(questionsState).includes(qid)){
+		return <NotFound />
+	}
 
 	let questionDetail = questionsState[qid];
 	const avatar = usersState[questionDetail.author].avatarURL;

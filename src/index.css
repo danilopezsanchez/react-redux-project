@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.notfoundContainer{
+	text-align: center;
+}
+
 /*Loading*/
 .overlayLoading{
 	opacity: 0.5;

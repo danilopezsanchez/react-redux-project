@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getInitialUser, getInitialQuestions } from "../actions/shared";
 import Loading from "./Loading";
+import NotFound from "./NotFound";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
 					<Route path="/add" exact element={<NewPoll />} />
 					<Route path="/questions/:question_id" exact element={<PollDetail />} />
 					<Route path="leaderboard" exact element={<Leaderboard/>} />
+					<Route path='*' element={<NotFound />}/>
 				</Routes>
 				) : <Login />)
 			}
