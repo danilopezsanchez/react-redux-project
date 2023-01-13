@@ -10,7 +10,6 @@ const Dashboard = () => {
 	const dispatch = useDispatch();
 	const authedUser = useSelector(state => state.authedUser);
 	const questionsState = useSelector(state => state.questions);
-	const usersState = useSelector(state => state.users);
 
 	const questionsAnswered = Object.values(questionsState).filter((item)=>{
 		if(item.optionOne.votes.includes(authedUser) || item.optionTwo.votes.includes(authedUser))
@@ -21,12 +20,6 @@ const Dashboard = () => {
 		if(!item.optionOne.votes.includes(authedUser) && !item.optionTwo.votes.includes(authedUser))
 			return item;
 	})
-	
-	useEffect(() => {
-		_getQuestions().then((questions)=>{
-			dispatch(receiveQuestions(questions));
-		})
-	},[dispatch]);
 
 	function formatDate(time) {
 		const dateFormat= new Date(time);
@@ -39,7 +32,7 @@ const Dashboard = () => {
 	}
 
 	return(
-		authedUser != null ? (<div>
+		<div>
 			<NavigationBar/>
 			<section className="pollSectionContainer">
 				<h1>New questions</h1>
@@ -47,13 +40,16 @@ const Dashboard = () => {
 				{
 					questionsNotAnswered && questionsNotAnswered.map((question) => {
 						return (
-							<div className="pollContainerDetail">
-							<div>{question.author}</div>
-							<div>{formatDate(question.timestamp)}</div>
-							<Link to={`/questions/${question.id}`}><button>View</button></Link>
-					</div>
+							<div key={question.id} className="pollContainerDetail">
+								<div>{question.author}</div>
+								<div>{formatDate(question.timestamp)}</div>
+								<Link to={`/questions/${question.id}`}><button>View</button></Link>
+							</div>
 						)
 					})
+				}
+				{
+					questionsNotAnswered.length===0 && <div>No polls to answer</div>
 				}
 				</div>
 			</section>
@@ -63,17 +59,20 @@ const Dashboard = () => {
 				{
 					questionsAnswered && questionsAnswered.map((question) => {
 						return (
-							<div className="pollContainerDetail">
-							<div>{question.author}</div>
-							<div>{formatDate(question.timestamp)}</div>
-							<Link to={`/questions/${question.id}`}><button>View</button></Link>
-					</div>
+							<div key={question.id} className="pollContainerDetail">
+								<div>{question.author}</div>
+								<div>{formatDate(question.timestamp)}</div>
+								<Link to={`/questions/${question.id}`}><button>View</button></Link>
+							</div>
 						)
 					})
 				}
+				{
+					questionsAnswered.length===0 && <div>No polls answered</div>
+				}
 				</div>
 			</section>
-		</div>) : <Login />
+		</div>
 	)
 }
 

@@ -1,5 +1,6 @@
 import NavigationBar from "./NavigationBar";
 import { useDispatch, useSelector } from "react-redux";
+import Login from "./Login";
 
 const Leaderboard = () => {
 	const authedUser = useSelector(state => state.authedUser);
@@ -19,6 +20,7 @@ const Leaderboard = () => {
 	usersOrdered.sort( compare );
 
 	return(
+		
 		<div>
 			<NavigationBar />
 			<div className="leaderContainer">

@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { LOGOUT_USER } from "../actions/authUser";
+import { logoutUser } from "../actions/authUser";
+import { useNavigate } from 'react-router';
 
 const NavigationBar = () => {
 	const authedUser = useSelector(state => state.authedUser);
+	const dispatch = useDispatch();
+	const navigation = useNavigate();
+
+	function handleLogout(){
+		dispatch(logoutUser());
+		navigation("/");
+	}
 
 	return(
 		<nav className="navigationBar">
@@ -13,7 +23,7 @@ const NavigationBar = () => {
 			</div>
 			<div className="loginNavegation">
 				<div>{authedUser}</div>
-				<a>Logout</a>
+				<a href="javascript:void(0)" onClick={handleLogout}>Logout</a>
 			</div>
 		</nav>
 	)

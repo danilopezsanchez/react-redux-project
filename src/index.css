@@ -101,7 +101,7 @@ code {
 }
 
 .pollDetailContainer .imgAvatar{
-	width: 50%;
+	width: 20%;
 	margin: auto;
 	border-radius: 50%;
 }
@@ -120,6 +120,11 @@ code {
     align-items: center;
 	border: 1px solid grey;
 	padding: 20px;
+}
+
+.optionSelected{
+	color: goldenrod;
+	margin-top: 20px;
 }
 /*End PollDetail*/
 
@@ -168,5 +173,10 @@ header .col{
 	border: 1px solid grey;
 	align-items: center;
 	padding: 10px;
+	line-height: 40px;
+}
+
+.col img {
+	float: left;
 }
 /*End Leaderboard*/

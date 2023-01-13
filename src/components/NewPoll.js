@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const NewPoll = () => {
 	const authedUser = useSelector(state => state.authedUser);
-	console.log(authedUser)
+
 	return(
 		<div>
 			<NavigationBar />

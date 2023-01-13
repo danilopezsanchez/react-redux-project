@@ -5,13 +5,13 @@ import App from './components/App';
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import usersReducer from "./reducers/usersReducer";
-import dashboardReducer from './reducers/dashboardReducer';
+import questionReducer from './reducers/questionsReducer';
 import authReducer from './reducers/authUser';
 import { BrowserRouter as Router} from "react-router-dom"
 
 const rootReducer = combineReducers({
   users: usersReducer,
-  questions: dashboardReducer,
+  questions: questionReducer,
   authedUser: authReducer,
 });
 

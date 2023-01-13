@@ -10,14 +10,13 @@ const Login = () => {
 	const dispatch = useDispatch();
 	const usersState = useSelector(state => state.users);	
 
-	useEffect(() => {
+	/*useEffect(() => {
 		_getUsers().then((users)=>{
 			dispatch(receiveUsers(users));
 		})
-	},[]);
+	},[]);*/
 
 	function handleLogin(event){
-		console.log(document.getElementById("loginBox").value);
 		const userSelected = document.getElementById("loginBox").value;
 		dispatch(loginUser(userSelected));
 	}
@@ -30,7 +29,7 @@ const Login = () => {
 			<select id="loginBox">
 				<option value="none">None</option>
 				{Object.values(usersState).map((item) => {
-					return <option value={item.id}>{item.name}</option>;
+					return <option key={item.id} value={item.id}>{item.name}</option>;
 				})}
 			</select>
 			<button onClick={handleLogin}>Login</button>
