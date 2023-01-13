@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavigationBar from "./NavigationBar";
 import { useParams, useLocation } from "react-router-dom";
 import { answerQuestion } from "../actions/questionAction"; 
+import { updateUserAnswer } from "../actions/usersAction";
 
 const PollDetail = () => {
 	let params = useParams();
@@ -13,17 +14,21 @@ const PollDetail = () => {
 
 	let questionDetail = questionsState[question_id];
 	const avatar = usersState[questionDetail.author].avatarURL;
-	const questionAnswered = questionDetail.optionOne.votes.includes(authedUser) || questionDetail.optionTwo.votes.includes(authedUser)
-	console.log(questionsState[question_id])
+	const questionAnswered = questionDetail.optionOne.votes.includes(authedUser) || questionDetail.optionTwo.votes.includes(authedUser);
+
+	let userDetail = usersState[authedUser];
 
 	function handleClickOption(optionSelected){
 		if(optionSelected===1){
-			questionDetail.optionOne.votes.push(authedUser)
+			questionDetail.optionOne.votes.push(authedUser);
+			userDetail.answers[question_id] = "optionOne";
 		}else{
-			questionDetail.optionTwo.votes.push(authedUser)
+			questionDetail.optionTwo.votes.push(authedUser);
+			userDetail.answers[question_id] = "optionTwo";
 		}
-		console.log(questionDetail);
+
 		dispatch(answerQuestion(questionDetail));
+		dispatch(updateUserAnswer(userDetail));
 	}
 	
 	return(

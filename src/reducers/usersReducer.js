@@ -1,4 +1,5 @@
-import { RECEIVE_USERS } from "../actions/usersAction";
+import { RECEIVE_USERS, UPDATE_ANSWER } from "../actions/usersAction";
+
 
 const usersReducer = (state={}, action) => {
 	switch(action.type){
@@ -6,6 +7,11 @@ const usersReducer = (state={}, action) => {
 			return{
 				...state,
 				...action.users,
+			};
+		case UPDATE_ANSWER:
+			return{
+				...state,
+				[action.user.id]: action.user,
 			};
 		default:
 			return state;

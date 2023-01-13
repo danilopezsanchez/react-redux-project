@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import choice from "../utils/images/choice.jpg";
 import { _getUsers } from "../utils/_DATA";
-import { receiveUsers } from "../actions/usersAction";
 import { loginUser } from "../actions/authUser";
 import {useDispatch, useSelector} from "react-redux";
 
