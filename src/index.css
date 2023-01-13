@@ -139,6 +139,11 @@ code {
 	color: goldenrod;
 	margin-top: 20px;
 }
+
+.optionVotes{
+	color:darkorchid;
+	margin-top: 20px;
+}
 /*End PollDetail*/
 
 /*New Poll*/

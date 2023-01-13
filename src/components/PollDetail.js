@@ -47,6 +47,9 @@ const PollDetail = () => {
 							{
 								questionDetail.optionOne.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
 							}
+							{
+								questionAnswered && <div class="optionVotes">Votes: {questionDetail.optionOne.votes.length}</div>
+							}
 						</div>
 
 						<div className="option">
@@ -56,6 +59,9 @@ const PollDetail = () => {
 							}
 							{
 								questionDetail.optionTwo.votes.includes(authedUser) && <div class="optionSelected">Option selected!</div>
+							}
+							{
+								questionAnswered && <div class="optionVotes">Votes: {questionDetail.optionTwo.votes.length}</div>
 							}
 						</div>
 					</div>
