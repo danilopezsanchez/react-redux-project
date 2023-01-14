@@ -2,7 +2,6 @@ import NavigationBar from "./NavigationBar";
 import { useSelector } from "react-redux";
 
 const Leaderboard = () => {
-	const authedUser = useSelector(state => state.authedUser);
 	const usersState = useSelector(state => state.users);
 
 	let usersOrdered = Object.values(usersState).map((user)=>{

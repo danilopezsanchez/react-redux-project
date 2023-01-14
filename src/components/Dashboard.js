@@ -12,15 +12,18 @@ const Dashboard = () => {
 	const questionsState = useSelector(state => state.questions);
 	const [visualizePolls, setVisualizePolls] = useState("new");
 
-	const questionsAnswered = Object.values(questionsState).filter((item)=>{
+	let questionsAnswered = Object.values(questionsState).filter((item)=>{
 		if(item.optionOne.votes.includes(authedUser) || item.optionTwo.votes.includes(authedUser))
 			return item;
 	})
+	questionsAnswered.sort(function(a,b){return b.timestamp-a.timestamp})
 
-	const questionsNotAnswered = Object.values(questionsState).filter((item)=>{
+	let questionsNotAnswered = Object.values(questionsState).filter((item)=>{
 		if(!item.optionOne.votes.includes(authedUser) && !item.optionTwo.votes.includes(authedUser))
 			return item;
 	})
+	questionsNotAnswered.sort(function(a,b){return b.timestamp-a.timestamp})
+	
 
 	function formatDate(time) {
 		const dateFormat= new Date(time);
