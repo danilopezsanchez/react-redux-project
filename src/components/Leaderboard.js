@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 const Leaderboard = () => {
 	const usersState = useSelector(state => state.users);
 
+	console.log(usersState);
+
 	let usersOrdered = Object.values(usersState).map((user)=>{
 		const counter = parseInt(user.questions.length) + parseInt(Object.values(user.answers).length)
 		return {

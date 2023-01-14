@@ -14,9 +14,11 @@ const usersReducer = (state={}, action) => {
 				[action.user.id]: action.user,
 			};
 		case UPDATE_QUESTION:
+			let userNewQuestion = state[action.question.author];
+			userNewQuestion.questions.push(action.question.id);
 			return{
 				...state,
-				[state[action.question.author]]: state[action.question.author].questions.push(action.question.id),
+				[userNewQuestion.id]: userNewQuestion,
 			};
 		default:
 			return state;

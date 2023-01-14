@@ -20,6 +20,8 @@ const PollDetail = () => {
 	let questionDetail = questionsState[qid];
 	const avatar = usersState[questionDetail.author].avatarURL;
 	const questionAnswered = questionDetail.optionOne.votes.includes(authedUser) || questionDetail.optionTwo.votes.includes(authedUser);
+	const percentageAnswerA = Math.floor(questionDetail.optionOne.votes.length / (questionDetail.optionOne.votes.length + questionDetail.optionTwo.votes.length) * 100);
+	const percentageAnswerB = Math.floor(questionDetail.optionTwo.votes.length / (questionDetail.optionOne.votes.length + questionDetail.optionTwo.votes.length) * 100);
 
 	let userDetail = usersState[authedUser];
 
@@ -52,7 +54,7 @@ const PollDetail = () => {
 								questionDetail.optionOne.votes.includes(authedUser) && <div className="optionSelected">Option selected!</div>
 							}
 							{
-								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionOne.votes.length}</div>
+								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionOne.votes.length}<br />{percentageAnswerA}%</div>
 							}
 						</div>
 
@@ -65,7 +67,7 @@ const PollDetail = () => {
 								questionDetail.optionTwo.votes.includes(authedUser) && <div className="optionSelected">Option selected!</div>
 							}
 							{
-								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionTwo.votes.length}</div>
+								questionAnswered && <div className="optionVotes">Votes: {questionDetail.optionTwo.votes.length}<br />{percentageAnswerB}%</div>
 							}
 						</div>
 					</div>
