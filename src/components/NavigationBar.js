@@ -23,7 +23,7 @@ const NavigationBar = () => {
 			</div>
 			<div className="loginNavegation">
 				<div>{authedUser}</div>
-				<a onClick={handleLogout}>Logout</a>
+				{authedUser && <a className="logoutLink" onClick={handleLogout}>Logout</a>}
 			</div>
 		</nav>
 	)

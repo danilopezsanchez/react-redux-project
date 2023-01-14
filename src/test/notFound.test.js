@@ -17,4 +17,18 @@ describe('NotFound', () => {
         var headTitle = component.getByRole('heading', { level: 1 })
         expect(headTitle).toBeInTheDocument();
     });
+
+	it('check have the h2', () => {
+        var component = render(<NotFound />);
+
+        var headTitle = component.getByRole('heading', { level: 2 })
+        expect(headTitle).toBeInTheDocument();
+    });
+
+	it('check have the img', () => {
+        var component = render(<NotFound />);
+
+        var img = component.getByRole('img')
+        expect(img).toBeInTheDocument();
+    });
 });

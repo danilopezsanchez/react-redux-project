@@ -46,7 +46,7 @@ code {
 }
 /*End Login page*/
 
-/*Main Page*/
+/*Navigation*/
 .navigationBar{
 	display: flex;
     flex-direction: row;
@@ -64,7 +64,14 @@ code {
 	gap: 20px;
 }
 
+.logoutLink{
+	cursor: pointer;
+	color: -webkit-link;
+    text-decoration: underline;
+}
+/*End Navigation*/
 
+/*Main Page*/
 .selectVisualization{
 	width: 60%;
 	margin: auto;
