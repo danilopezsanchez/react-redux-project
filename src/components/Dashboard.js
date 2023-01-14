@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { receiveQuestions } from "../actions/questionAction";
@@ -10,6 +10,7 @@ const Dashboard = () => {
 	const dispatch = useDispatch();
 	const authedUser = useSelector(state => state.authedUser);
 	const questionsState = useSelector(state => state.questions);
+	const [visualizePolls, setVisualizePolls] = useState("new");
 
 	const questionsAnswered = Object.values(questionsState).filter((item)=>{
 		if(item.optionOne.votes.includes(authedUser) || item.optionTwo.votes.includes(authedUser))
@@ -31,9 +32,24 @@ const Dashboard = () => {
 		return dateFormated;
 	}
 
+	function handleVisualizeOption(){
+		const visualizationSelected = document.getElementById("visualizationBox").value;
+		setVisualizePolls(visualizationSelected)
+	}
+
 	return(
 		<div>
 			<NavigationBar/>
+			<div className="selectVisualization">
+				<div>Select what you want to visualize:</div>
+				<select id="visualizationBox" value={visualizePolls} onChange={handleVisualizeOption}>
+					<option value="all">All</option>
+					<option value="new">New</option>
+					<option value="done">Done</option>
+				</select>
+			</div>
+			{
+			(visualizePolls==="all" || visualizePolls==="new") && 
 			<section className="pollSectionContainer">
 				<h1>New questions</h1>
 				<div className="pollListContainer">
@@ -53,6 +69,9 @@ const Dashboard = () => {
 				}
 				</div>
 			</section>
+			}
+			{
+			(visualizePolls==="all" || visualizePolls==="done") && 
 			<section className="pollSectionContainer">
 				<h1>Done</h1>
 				<div className="pollListContainer">
@@ -72,6 +91,7 @@ const Dashboard = () => {
 				}
 				</div>
 			</section>
+			}
 		</div>
 	)
 }

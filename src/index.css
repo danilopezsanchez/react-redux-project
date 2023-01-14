@@ -64,6 +64,12 @@ code {
 	gap: 20px;
 }
 
+
+.selectVisualization{
+	width: 60%;
+	margin: auto;
+} 
+
 .pollSectionContainer{
 	width: 60%;
 	margin: 100px auto;

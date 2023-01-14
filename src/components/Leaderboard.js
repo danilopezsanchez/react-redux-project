@@ -1,6 +1,5 @@
 import NavigationBar from "./NavigationBar";
-import { useDispatch, useSelector } from "react-redux";
-import Login from "./Login";
+import { useSelector } from "react-redux";
 
 const Leaderboard = () => {
 	const authedUser = useSelector(state => state.authedUser);
@@ -25,20 +24,20 @@ const Leaderboard = () => {
 			<NavigationBar />
 			<div className="leaderContainer">
 				<header>
-					<div class="col">Users</div>
-					<div class="col">Answered</div>
-					<div class="col">Created</div>
+					<div className="col">Users</div>
+					<div className="col">Answered</div>
+					<div className="col">Created</div>
 				</header>
 				{
 					usersOrdered.map((item) => {
 						return (
-							<div key={item.id} class="row">
-								<div class="col">
+							<div key={item.id} className="row">
+								<div className="col">
 									<img src={item.avatarURL} width="50px"/>
 									{item.name}
 								</div>
-								<div class="col">{Object.values(item.answers).length}</div>
-								<div class="col">{item.questions.length}</div>
+								<div className="col">{Object.values(item.answers).length}</div>
+								<div className="col">{item.questions.length}</div>
 							</div>
 						);
 					})

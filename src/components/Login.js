@@ -15,7 +15,7 @@ const Login = () => {
 		})
 	},[]);*/
 
-	function handleLogin(event){
+	function handleLogin(){
 		const userSelected = document.getElementById("loginBox").value;
 		dispatch(loginUser(userSelected));
 	}
